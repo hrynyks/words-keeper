@@ -22,7 +22,7 @@ export default defineComponent({
 <template>
   <main class="main-layout__main">
     <MainWordForm @createNewWord="pushNewWord" />
-    <HomePageWordList />
+    <HomePageWordList :wordList="words" />
   </main>
 </template>
 

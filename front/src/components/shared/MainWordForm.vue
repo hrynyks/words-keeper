@@ -14,6 +14,8 @@ export default defineComponent({
   },
   methods: {
     formSubmit() {
+      if (!this.word || !this.translate) return;
+
       const payload = {
         id: new Date().getTime(),
         word: this.word,
