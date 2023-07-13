@@ -15,6 +15,9 @@ export default defineComponent({
       this.words.push(item);
       console.log(this.words);
     },
+    deleteWord(id) {
+      this.words = this.words.filter((item) => item.id !== id);
+    },
   },
 });
 </script>
@@ -22,7 +25,7 @@ export default defineComponent({
 <template>
   <main class="main-layout__main">
     <MainWordForm @createNewWord="pushNewWord" />
-    <HomePageWordList></HomePageWordList>
+    <HomePageWordList :wordList="words" @deleteWordItem="deleteWord($event)" />
   </main>
 </template>
 
