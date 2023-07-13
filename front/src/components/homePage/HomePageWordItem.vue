@@ -9,6 +9,12 @@ export default defineComponent({
       required: true,
     },
   },
+  methods: {
+    onDeleteWordItem(id) {
+      this.$emit("deleteWordItem", id);
+    },
+  },
+  emits: ["deleteWordItem"],
 });
 </script>
 
@@ -23,6 +29,7 @@ export default defineComponent({
           {{ itemWord.translate }}
         </div>
       </div>
+      <v-btn @click="onDeleteWordItem(itemWord.id)"> Delete </v-btn>
     </v-card-item>
   </v-card>
 </template>
