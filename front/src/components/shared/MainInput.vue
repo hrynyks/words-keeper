@@ -8,14 +8,14 @@ export default defineComponent({
       type: [String, Number],
       required: true,
     },
+    label: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       required: false,
       default: "text",
-    },
-    label: {
-      type: String,
-      required: true,
     },
   },
   methods: {

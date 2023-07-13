@@ -1,7 +1,7 @@
 <script>
-import { defineComponent } from "vue";
 import MainInput from "@/components/shared/MainInput.vue";
 import MainButton from "@/components/shared/MainButton.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "MainWordForm",
