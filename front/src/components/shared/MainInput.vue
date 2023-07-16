@@ -27,15 +27,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-responsive class="mx-auto" max-width="344">
-    <v-text-field
-      hide-details="auto"
-      :label="label"
-      :value="text"
-      :type="type"
-      @input="updateInput"
-    ></v-text-field>
-  </v-responsive>
+  <v-text-field
+    class="input"
+    hide-details="auto"
+    :label="label"
+    :value="text"
+    :type="type"
+    @input="updateInput"
+  ></v-text-field>
 </template>
 
-<style scoped></style>
+<style scoped>
+.input {
+  width: 100%;
+}
+</style>

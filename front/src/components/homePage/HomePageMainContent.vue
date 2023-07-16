@@ -2,12 +2,14 @@
 import { defineComponent } from "vue";
 import MainWordForm from "@/components/shared/MainWordForm.vue";
 import HomePageWordList from "@/components/homePage/HomePageWordList.vue";
+import MainModal from "@/components/shared/MainModal.vue";
 export default defineComponent({
   name: "HomePageMainContent",
-  components: { MainWordForm, HomePageWordList },
+  components: { MainModal, MainWordForm, HomePageWordList },
   data() {
     return {
       words: [],
+      isShowModal: true,
     };
   },
   methods: {
@@ -18,14 +20,19 @@ export default defineComponent({
     deleteWord(id) {
       this.words = this.words.filter((item) => item.id !== id);
     },
+    switchModal(isShowModal) {
+      this.isShowModal = isShowModal;
+    },
   },
 });
 </script>
 
 <template>
   <main class="main-layout__main">
-    <MainWordForm @createNewWord="pushNewWord" />
     <HomePageWordList :wordList="words" @deleteWordItem="deleteWord($event)" />
+    <MainModal v-if="isShowModal" @closeModal="switchModal($event)">
+      <MainWordForm @createNewWord="pushNewWord" />
+    </MainModal>
   </main>
 </template>
 

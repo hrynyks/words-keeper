@@ -9,6 +9,10 @@ export default defineComponent({
       required: false,
       default: "button",
     },
+    btnText: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     onClick() {
@@ -20,6 +24,6 @@ export default defineComponent({
 
 <template>
   <v-btn :type="type" @click="onClick">
-    <slot></slot>
+    {{ btnText }}
   </v-btn>
 </template>
