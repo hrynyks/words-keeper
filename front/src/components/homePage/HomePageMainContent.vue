@@ -3,13 +3,14 @@ import { defineComponent } from "vue";
 import MainWordForm from "@/components/shared/MainWordForm.vue";
 import HomePageWordList from "@/components/homePage/HomePageWordList.vue";
 import MainModal from "@/components/shared/MainModal.vue";
+import MainButton from "@/components/shared/MainButton.vue";
 export default defineComponent({
   name: "HomePageMainContent",
-  components: { MainModal, MainWordForm, HomePageWordList },
+  components: { MainButton, MainModal, MainWordForm, HomePageWordList },
   data() {
     return {
       words: [],
-      isShowModal: true,
+      isShowModal: false,
     };
   },
   methods: {
@@ -29,6 +30,7 @@ export default defineComponent({
 
 <template>
   <main class="main-layout__main">
+    <MainButton btn-text="Add word" @onClick="switchModal(true)" />
     <HomePageWordList :wordList="words" @deleteWordItem="deleteWord($event)" />
     <MainModal v-if="isShowModal" @closeModal="switchModal($event)">
       <MainWordForm @createNewWord="pushNewWord" />

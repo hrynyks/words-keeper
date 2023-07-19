@@ -19,6 +19,7 @@ export default defineComponent({
       this.$emit("onClick");
     },
   },
+  emits: ["onClick"],
 });
 </script>
 

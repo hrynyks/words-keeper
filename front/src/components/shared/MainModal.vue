@@ -12,8 +12,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <div @click="closeModal" class="confirm">
-    <div class="confirm__content">
+  <div @click.stop="closeModal" class="confirm">
+    <div @click.stop class="confirm__content">
+      <button @click="closeModal" class="confirm__close-btn">
+        <svg class="confirm__button-icon">
+          <use href="../../assets/svg/sprites.svg#close-icon"></use>
+        </svg>
+      </button>
       <slot />
     </div>
   </div>
@@ -36,7 +41,7 @@ export default defineComponent({
   max-width: 600px;
   width: 100%;
   margin: auto;
-  padding: 20px;
+  padding: 40px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -44,5 +49,19 @@ export default defineComponent({
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%);
+}
+.confirm__close-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  &:hover {
+    .confirm__button-icon {
+      fill: red;
+    }
+  }
+}
+.confirm__button-icon {
+  width: 30px;
+  height: 30px;
 }
 </style>
