@@ -11,7 +11,7 @@ export default defineComponent({
     <v-tab> Option </v-tab>
     <v-tab> Another Option </v-tab>
     <v-tab> Another Option </v-tab>
-    <v-tab> Another Option </v-tab>
+    <v-tab> Add word </v-tab>
   </v-tabs>
 </template>
 

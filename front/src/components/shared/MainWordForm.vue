@@ -44,7 +44,7 @@ export default defineComponent({
       :text="translate"
       @update:modelText="(text) => (translate = text)"
     />
-    <MainButton type="submit">Add to dictionary</MainButton>
+    <MainButton type="submit" btnText="Add to dictionary"></MainButton>
   </form>
 </template>
 
@@ -54,5 +54,6 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 </style>
