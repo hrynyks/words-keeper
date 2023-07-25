@@ -15,8 +15,11 @@ export default defineComponent({
     deleteWordItem(id) {
       this.$emit("deleteWordItem", id);
     },
+    editWordItem(item) {
+      this.$emit("editWordItem", item);
+    },
   },
-  emits: ["deleteWordItem"],
+  emits: ["deleteWordItem", "editWordItem"],
 });
 </script>
 
@@ -27,6 +30,7 @@ export default defineComponent({
     :key="item.id"
     :itemWord="item"
     @deleteWordItem="deleteWordItem($event)"
+    @editWordItem="editWordItem($event)"
   />
 </template>
 

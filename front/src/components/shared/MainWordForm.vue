@@ -8,6 +8,7 @@ export default defineComponent({
   components: { MainButton, MainInput },
   data() {
     return {
+      id: "",
       word: "",
       translate: "",
     };
@@ -23,6 +24,11 @@ export default defineComponent({
       };
       this.$emit("createNewWord", payload);
       this.clearInputs();
+    },
+    updateInputs(item) {
+      this.id = item.id;
+      this.word = item.word;
+      this.translate = item.translate;
     },
     clearInputs() {
       this.word = "";

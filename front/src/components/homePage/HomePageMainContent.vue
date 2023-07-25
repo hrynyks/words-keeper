@@ -16,10 +16,16 @@ export default defineComponent({
   methods: {
     pushNewWord(item) {
       this.words.push(item);
-      console.log(this.words);
+      this.switchModal(false);
     },
     deleteWord(id) {
       this.words = this.words.filter((item) => item.id !== id);
+    },
+    editWordItem(item) {
+      this.switchModal(true);
+      this.$nextTick(() => {
+        this.$refs.wordForm.updateInputs(item);
+      });
     },
     switchModal(isShowModal) {
       this.isShowModal = isShowModal;
@@ -31,9 +37,13 @@ export default defineComponent({
 <template>
   <main class="main-layout__main">
     <MainButton btn-text="Add word" @onClick="switchModal(true)" />
-    <HomePageWordList :wordList="words" @deleteWordItem="deleteWord($event)" />
+    <HomePageWordList
+      :wordList="words"
+      @deleteWordItem="deleteWord($event)"
+      @editWordItem="editWordItem($event)"
+    />
     <MainModal v-if="isShowModal" @closeModal="switchModal($event)">
-      <MainWordForm @createNewWord="pushNewWord" />
+      <MainWordForm ref="wordForm" @createNewWord="pushNewWord" />
     </MainModal>
   </main>
 </template>
