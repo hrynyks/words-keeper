@@ -8,6 +8,7 @@ export default defineComponent({
   components: { MainButton, MainInput },
   data() {
     return {
+      id: "",
       word: "",
       translate: "",
     };
@@ -17,18 +18,31 @@ export default defineComponent({
       if (!this.word || !this.translate) return;
 
       const payload = {
-        id: new Date().getTime(),
+        id: this.id ? this.id : new Date().getTime(),
         word: this.word,
         translate: this.translate,
       };
-      this.$emit("createNewWord", payload);
+      this.selectEmitEvent(payload);
       this.clearInputs();
+    },
+    updateInputs(item) {
+      this.id = item.id;
+      this.word = item.word;
+      this.translate = item.translate;
     },
     clearInputs() {
       this.word = "";
       this.translate = "";
     },
+    selectEmitEvent(payload) {
+      if (this.id) {
+        this.$emit("editWord", payload);
+      } else {
+        this.$emit("createNewWord", payload);
+      }
+    },
   },
+  emits: ["editWord", "createNewWord"],
 });
 </script>
 
