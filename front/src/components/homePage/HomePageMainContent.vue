@@ -30,6 +30,10 @@ export default defineComponent({
     switchModal(isShowModal) {
       this.isShowModal = isShowModal;
     },
+    updateCurrentWord(item) {
+      this.words = this.words.map((el) => (el.id === item.id ? item : el));
+      this.switchModal(false);
+    },
   },
 });
 </script>
@@ -43,7 +47,11 @@ export default defineComponent({
       @editWordItem="editWordItem($event)"
     />
     <MainModal v-if="isShowModal" @closeModal="switchModal($event)">
-      <MainWordForm ref="wordForm" @createNewWord="pushNewWord" />
+      <MainWordForm
+        ref="wordForm"
+        @createNewWord="pushNewWord"
+        @editWord="updateCurrentWord"
+      />
     </MainModal>
   </main>
 </template>
