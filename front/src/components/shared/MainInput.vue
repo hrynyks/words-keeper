@@ -27,18 +27,26 @@ export default defineComponent({
 </script>
 
 <template>
-  <v-text-field
+  <input
     class="input"
-    hide-details="auto"
-    :label="label"
+    :placeholder="label"
     :value="text"
     :type="type"
     @input="updateInput"
-  ></v-text-field>
+  />
 </template>
 
 <style scoped>
 .input {
-  width: 100%;
+  position: initial;
+  width: 292px;
+  outline: none;
+  color: #111111;
+  padding: 12px 16px;
+  height: 59px;
+  background: #f3f3f3;
+  border: none;
+  border-bottom: 2px solid #303f9f;
+  border-radius: 6px;
 }
 </style>
