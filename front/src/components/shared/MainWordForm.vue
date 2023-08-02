@@ -42,6 +42,11 @@ export default defineComponent({
       }
     },
   },
+  computed: {
+    btnText() {
+      return this.id ? "Edit new word" : "Add new word";
+    },
+  },
   emits: ["editWord", "createNewWord"],
 });
 </script>
@@ -58,16 +63,18 @@ export default defineComponent({
       :text="translate"
       @update:modelText="(text) => (translate = text)"
     />
-    <MainButton type="submit" btnText="Add to dictionary"></MainButton>
+    <MainButton type="submit" :btnText="btnText"></MainButton>
   </form>
 </template>
 
 <style scoped>
 .word-form {
   width: 100%;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 20px;
 }
 </style>

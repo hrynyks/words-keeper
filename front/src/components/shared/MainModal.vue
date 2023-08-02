@@ -37,7 +37,6 @@ export default defineComponent({
 }
 
 .confirm__content {
-  height: 170px;
   max-width: 600px;
   width: 100%;
   margin: auto;
