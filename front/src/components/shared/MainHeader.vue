@@ -16,6 +16,6 @@ export default defineComponent({
 
 <style scoped>
 .main-layout__header {
-  background-color: green;
+  background-color: #a7f3e1;
 }
 </style>

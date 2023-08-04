@@ -70,7 +70,6 @@ export default defineComponent({
 <style scoped>
 .word-form {
   width: 100%;
-  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
