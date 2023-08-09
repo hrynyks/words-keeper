@@ -2,6 +2,7 @@
 import MainInput from "@/components/shared/MainInput.vue";
 import MainButton from "@/components/shared/MainButton.vue";
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "MainWordForm",
@@ -23,31 +24,29 @@ export default defineComponent({
         translate: this.translate,
       };
       this.selectEmitEvent(payload);
-      this.clearInputs();
     },
     updateInputs(item) {
       this.id = item.id;
       this.word = item.word;
       this.translate = item.translate;
     },
-    clearInputs() {
-      this.word = "";
-      this.translate = "";
-    },
     selectEmitEvent(payload) {
       if (this.id) {
         this.$emit("editWord", payload);
       } else {
-        this.$emit("createNewWord", payload);
+        this.pushNewWord(payload);
       }
     },
+    ...mapActions({
+      pushNewWord: "pushNewWord",
+    }),
   },
   computed: {
     btnText() {
       return this.id ? "Edit new word" : "Add new word";
     },
   },
-  emits: ["editWord", "createNewWord"],
+  emits: ["editWord"],
 });
 </script>
 

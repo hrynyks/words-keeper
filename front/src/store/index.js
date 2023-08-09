@@ -16,8 +16,11 @@ export default createStore({
     setShowModal(state, value) {
       state.isShowModal = value;
     },
-    setM(state, item) {
+    setAddNewWord(state, item) {
       state.words = [...state.words, item];
+    },
+    setDeleteWord(state, id) {
+      state.words = state.words.filter((item) => item.id !== id);
     },
   },
   actions: {
@@ -26,6 +29,13 @@ export default createStore({
     },
     changeShowModal({ commit }, value) {
       commit("setShowModal", value);
+    },
+    pushNewWord({ commit, dispatch }, item) {
+      commit("setAddNewWord", item);
+      dispatch("changeShowModal", false);
+    },
+    deleteWord({ commit }, id) {
+      commit("setDeleteWord", id);
     },
   },
   modules: {},

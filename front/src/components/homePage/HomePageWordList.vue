@@ -1,6 +1,7 @@
 <script>
 import { defineComponent } from "vue";
 import HomePageWordItem from "@/components/homePage/HomePageWordItem.vue";
+import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "HomePageWordList",
@@ -12,14 +13,14 @@ export default defineComponent({
     },
   },
   methods: {
-    deleteWordItem(id) {
-      this.$emit("deleteWordItem", id);
-    },
     editWordItem(item) {
       this.$emit("editWordItem", item);
     },
+    ...mapActions({
+      deleteWord: "deleteWord",
+    }),
   },
-  emits: ["deleteWordItem", "editWordItem"],
+  emits: ["editWordItem"],
 });
 </script>
 
@@ -29,7 +30,7 @@ export default defineComponent({
     v-for="item in wordList"
     :key="item.id"
     :itemWord="item"
-    @deleteWordItem="deleteWordItem($event)"
+    @deleteWordItem="deleteWord($event)"
     @editWordItem="editWordItem($event)"
   />
 </template>

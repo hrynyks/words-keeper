@@ -7,19 +7,7 @@ import { mapActions, mapState } from "vuex";
 export default defineComponent({
   name: "HomePageMainContent",
   components: { MainModal, MainWordForm, HomePageWordList },
-  data() {
-    return {
-      words: [],
-    };
-  },
   methods: {
-    pushNewWord(item) {
-      this.words.push(item);
-      this.changeShowModal(false);
-    },
-    deleteWord(id) {
-      this.words = this.words.filter((item) => item.id !== id);
-    },
     editWordItem(item) {
       this.changeShowModal(true);
       this.$nextTick(() => {
@@ -37,6 +25,7 @@ export default defineComponent({
   computed: {
     ...mapState({
       isShowModal: (state) => state.isShowModal,
+      words: (state) => state.words,
     }),
   },
 });
@@ -44,17 +33,9 @@ export default defineComponent({
 
 <template>
   <main class="main-layout__main">
-    <HomePageWordList
-      :wordList="words"
-      @deleteWordItem="deleteWord($event)"
-      @editWordItem="editWordItem($event)"
-    />
+    <HomePageWordList :wordList="words" @editWordItem="editWordItem($event)" />
     <MainModal v-if="isShowModal" @closeModal="changeShowModal($event)">
-      <MainWordForm
-        ref="wordForm"
-        @createNewWord="pushNewWord"
-        @editWord="updateCurrentWord"
-      />
+      <MainWordForm ref="wordForm" @editWord="updateCurrentWord" />
     </MainModal>
   </main>
 </template>
