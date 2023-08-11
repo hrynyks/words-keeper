@@ -2,16 +2,16 @@
 import MainInput from "@/components/shared/MainInput.vue";
 import MainButton from "@/components/shared/MainButton.vue";
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default defineComponent({
   name: "MainWordForm",
   components: { MainButton, MainInput },
   data() {
     return {
-      id: "",
-      word: "",
-      translate: "",
+      // id: "",
+      // word: "",
+      // translate: "",
     };
   },
   methods: {
@@ -39,9 +39,17 @@ export default defineComponent({
     },
     ...mapActions({
       pushNewWord: "pushNewWord",
+      changeWord: "changeWord",
+      changeTranslate: "changeTranslate",
+      changeId: "changeId",
     }),
   },
   computed: {
+    ...mapState({
+      word: (state) => state.word.word,
+      translate: (state) => state.word.translate,
+      id: (state) => state.word.id,
+    }),
     btnText() {
       return this.id ? "Edit new word" : "Add new word";
     },
@@ -55,12 +63,12 @@ export default defineComponent({
     <MainInput
       label="Add word"
       :text="word"
-      @update:modelText="(text) => (word = text)"
+      @update:modelText="(text) => changeWord(text)"
     />
     <MainInput
       label="Add translate"
       :text="translate"
-      @update:modelText="(text) => (translate = text)"
+      @update:modelText="(text) => changeTranslate(text)"
     />
     <MainButton type="submit" :btnText="btnText"></MainButton>
   </form>

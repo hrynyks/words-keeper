@@ -24,8 +24,8 @@ export default defineComponent({
   },
   computed: {
     ...mapState({
-      isShowModal: (state) => state.isShowModal,
-      words: (state) => state.words,
+      isShowModal: (state) => state.ui.isShowModal,
+      words: (state) => state.word.words,
     }),
   },
 });
