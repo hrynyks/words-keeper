@@ -8,16 +8,6 @@ export default defineComponent({
   name: "HomePageMainContent",
   components: { MainModal, MainWordForm, HomePageWordList },
   methods: {
-    editWordItem(item) {
-      this.changeShowModal(true);
-      this.$nextTick(() => {
-        this.$refs.wordForm.updateInputs(item);
-      });
-    },
-    updateCurrentWord(item) {
-      this.words = this.words.map((el) => (el.id === item.id ? item : el));
-      this.changeShowModal(false);
-    },
     ...mapActions({
       changeShowModal: "changeShowModal",
     }),
@@ -25,7 +15,6 @@ export default defineComponent({
   computed: {
     ...mapState({
       isShowModal: (state) => state.ui.isShowModal,
-      words: (state) => state.word.words,
     }),
   },
 });
@@ -33,9 +22,9 @@ export default defineComponent({
 
 <template>
   <main class="main-layout__main">
-    <HomePageWordList :wordList="words" @editWordItem="editWordItem($event)" />
+    <HomePageWordList />
     <MainModal v-if="isShowModal" @closeModal="changeShowModal($event)">
-      <MainWordForm ref="wordForm" @editWord="updateCurrentWord" />
+      <MainWordForm />
     </MainModal>
   </main>
 </template>

@@ -8,6 +8,12 @@ export const WORD_ACTIONS = {
     deleteWord({ commit }, id) {
       commit("setDeleteWord", id);
     },
+    updateCurrentWord({ commit, dispatch }, item) {
+      commit("setUpdateWord", item);
+      dispatch("changeShowModal", false);
+      dispatch("clearInputs");
+    },
+
     changeWord({ commit }, item) {
       commit("setWord", item);
     },
@@ -17,6 +23,14 @@ export const WORD_ACTIONS = {
     changeId({ commit }, item) {
       commit("setId", item);
     },
+
+    fillFormWithCardData({ dispatch }, item) {
+      dispatch("changeWord", item.word);
+      dispatch("changeTranslate", item.translate);
+      dispatch("changeId", item.id);
+      dispatch("changeShowModal", true);
+    },
+
     clearInputs({ commit }) {
       commit("setWord", "");
       commit("setTranslate", "");

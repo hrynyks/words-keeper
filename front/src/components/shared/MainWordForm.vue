@@ -7,32 +7,20 @@ import { mapActions, mapState } from "vuex";
 export default defineComponent({
   name: "MainWordForm",
   components: { MainButton, MainInput },
-  data() {
-    return {
-      // id: "",
-      // word: "",
-      // translate: "",
-    };
-  },
   methods: {
     formSubmit() {
-      if (!this.word || !this.translate) return;
+      if (!this.wordItem.word || !this.wordItem.translate) return;
 
       const payload = {
-        id: this.id ? this.id : new Date().getTime(),
-        word: this.word,
-        translate: this.translate,
+        id: this.wordItem.id ? this.wordItem.id : new Date().getTime(),
+        word: this.wordItem.word,
+        translate: this.wordItem.translate,
       };
       this.selectEmitEvent(payload);
     },
-    updateInputs(item) {
-      this.id = item.id;
-      this.word = item.word;
-      this.translate = item.translate;
-    },
     selectEmitEvent(payload) {
-      if (this.id) {
-        this.$emit("editWord", payload);
+      if (this.wordItem.id) {
+        this.updateCurrentWord(payload);
       } else {
         this.pushNewWord(payload);
       }
@@ -42,19 +30,17 @@ export default defineComponent({
       changeWord: "changeWord",
       changeTranslate: "changeTranslate",
       changeId: "changeId",
+      updateCurrentWord: "updateCurrentWord",
     }),
   },
   computed: {
     ...mapState({
-      word: (state) => state.word.word,
-      translate: (state) => state.word.translate,
-      id: (state) => state.word.id,
+      wordItem: (state) => state.word.wordItem,
     }),
     btnText() {
-      return this.id ? "Edit new word" : "Add new word";
+      return this.wordItem.id ? "Edit new word" : "Add new word";
     },
   },
-  emits: ["editWord"],
 });
 </script>
 
@@ -62,12 +48,12 @@ export default defineComponent({
   <form class="word-form" @submit.prevent="formSubmit">
     <MainInput
       label="Add word"
-      :text="word"
+      :text="wordItem.word"
       @update:modelText="(text) => changeWord(text)"
     />
     <MainInput
       label="Add translate"
-      :text="translate"
+      :text="wordItem.translate"
       @update:modelText="(text) => changeTranslate(text)"
     />
     <MainButton type="submit" :btnText="btnText"></MainButton>
