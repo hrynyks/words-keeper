@@ -27,10 +27,9 @@ export default defineComponent({
     },
     ...mapActions({
       pushNewWord: "pushNewWord",
-      changeWord: "changeWord",
-      changeTranslate: "changeTranslate",
-      changeId: "changeId",
+      changeWordInputs: "changeWordInputs",
       updateCurrentWord: "updateCurrentWord",
+      clearInputs: "clearInputs",
     }),
   },
   computed: {
@@ -41,6 +40,9 @@ export default defineComponent({
       return this.wordItem.id ? "Edit new word" : "Add new word";
     },
   },
+  unmounted() {
+    this.clearInputs();
+  },
 });
 </script>
 
@@ -49,12 +51,12 @@ export default defineComponent({
     <MainInput
       label="Add word"
       :text="wordItem.word"
-      @update:modelText="(text) => changeWord(text)"
+      @update:modelText="(text) => changeWordInputs({ word: text })"
     />
     <MainInput
       label="Add translate"
       :text="wordItem.translate"
-      @update:modelText="(text) => changeTranslate(text)"
+      @update:modelText="(text) => changeWordInputs({ translate: text })"
     />
     <MainButton type="submit" :btnText="btnText"></MainButton>
   </form>

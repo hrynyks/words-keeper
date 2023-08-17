@@ -9,15 +9,11 @@ export const WORD_MUTATIONS = {
     setUpdateWord(state, item) {
       state.words = state.words.map((el) => (el.id === item.id ? item : el));
     },
-
-    setWord(state, value) {
-      state.wordItem.word = value;
-    },
-    setTranslate(state, value) {
-      state.wordItem.translate = value;
-    },
-    setId(state, value) {
-      state.wordItem.id = value;
+    setChangeWordInputs(state, item) {
+      state.wordItem = {
+        ...state.wordItem,
+        ...item,
+      };
     },
   },
 };
