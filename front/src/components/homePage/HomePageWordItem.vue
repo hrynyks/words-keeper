@@ -4,13 +4,16 @@ import MainButton from "@/components/shared/MainButton.vue";
 
 export default defineComponent({
   name: "HomePageWordItem",
+
   components: { MainButton },
+
   props: {
     itemWord: {
       type: Object,
       required: true,
     },
   },
+
   methods: {
     onDeleteWordItem(id) {
       this.$emit("deleteWordItem", id);
@@ -19,6 +22,7 @@ export default defineComponent({
       this.$emit("editWordItem", item);
     },
   },
+
   emits: ["deleteWordItem", "editWordItem"],
 });
 </script>
