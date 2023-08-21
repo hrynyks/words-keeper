@@ -13,12 +13,20 @@ export default defineComponent({
     ...mapActions({
       deleteWord: "deleteWord",
       fillFormWithCardData: "fillFormWithCardData",
+      fetchWords: "fetchWords",
     }),
   },
   computed: {
     ...mapState({
       words: (state) => state.word.words,
     }),
+  },
+  mounted() {
+    console.log("create");
+    this.fetchWords();
+  },
+  unmounted() {
+    console.log("destroy");
   },
 });
 </script>

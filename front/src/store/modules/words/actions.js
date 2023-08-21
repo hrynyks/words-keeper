@@ -1,5 +1,20 @@
+import axios from "axios";
+
 export const WORD_ACTIONS = {
   actions: {
+    async fetchWords() {
+      await axios
+        .get("http://localhost:3000/words")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          console.log("finally");
+        });
+    },
     pushNewWord({ commit, dispatch }, item) {
       commit("setAddNewWord", item);
       dispatch("changeShowModal", false);
