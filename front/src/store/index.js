@@ -1,22 +1,11 @@
 import { createStore } from "vuex";
+import { word } from "@/store/modules/words/words";
+import { ui } from "@/store/modules/ui/ui";
 
 export default createStore({
-  state() {
-    return {
-      count: 0,
-    };
+  modules: {
+    word: word,
+    ui: ui,
   },
-  getters: {},
-  mutations: {
-    setCount(state, value) {
-      state.count = value;
-    },
-  },
-  actions: {
-    changeCount({ commit }, value) {
-      commit("setCount", value);
-    },
-  },
-  modules: {},
 });
 // component - dispatch(action) - commit(mutation) - change state

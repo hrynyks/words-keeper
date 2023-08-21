@@ -1,58 +1,15 @@
 <script>
 import { defineComponent } from "vue";
-import MainWordForm from "@/components/shared/MainWordForm.vue";
 import HomePageWordList from "@/components/homePage/HomePageWordList.vue";
-import MainModal from "@/components/shared/MainModal.vue";
-import MainButton from "@/components/shared/MainButton.vue";
 export default defineComponent({
   name: "HomePageMainContent",
-  components: { MainButton, MainModal, MainWordForm, HomePageWordList },
-  data() {
-    return {
-      words: [],
-      isShowModal: false,
-    };
-  },
-  methods: {
-    pushNewWord(item) {
-      this.words.push(item);
-      this.switchModal(false);
-    },
-    deleteWord(id) {
-      this.words = this.words.filter((item) => item.id !== id);
-    },
-    editWordItem(item) {
-      this.switchModal(true);
-      this.$nextTick(() => {
-        this.$refs.wordForm.updateInputs(item);
-      });
-    },
-    switchModal(isShowModal) {
-      this.isShowModal = isShowModal;
-    },
-    updateCurrentWord(item) {
-      this.words = this.words.map((el) => (el.id === item.id ? item : el));
-      this.switchModal(false);
-    },
-  },
+  components: { HomePageWordList },
 });
 </script>
 
 <template>
   <main class="main-layout__main">
-    <MainButton btn-text="Add word" @onClick="switchModal(true)" />
-    <HomePageWordList
-      :wordList="words"
-      @deleteWordItem="deleteWord($event)"
-      @editWordItem="editWordItem($event)"
-    />
-    <MainModal v-if="isShowModal" @closeModal="switchModal($event)">
-      <MainWordForm
-        ref="wordForm"
-        @createNewWord="pushNewWord"
-        @editWord="updateCurrentWord"
-      />
-    </MainModal>
+    <HomePageWordList />
   </main>
 </template>
 

@@ -1,10 +1,11 @@
 <script>
 import { defineComponent } from "vue";
 import MainNavigation from "@/components/shared/MainNavigation.vue";
+import WordFormModal from "@/components/shared/modals/WordFormModal.vue";
 
 export default defineComponent({
   name: "MainHeader",
-  components: { MainNavigation },
+  components: { WordFormModal, MainNavigation },
 });
 </script>
 
@@ -12,10 +13,11 @@ export default defineComponent({
   <header class="main-layout__header">
     <MainNavigation />
   </header>
+  <WordFormModal />
 </template>
 
 <style scoped>
 .main-layout__header {
-  background-color: green;
+  background-color: #a7f3e1;
 }
 </style>
