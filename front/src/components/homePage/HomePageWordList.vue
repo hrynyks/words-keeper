@@ -4,13 +4,16 @@ import HomePageWordItem from "@/components/homePage/HomePageWordItem.vue";
 
 export default defineComponent({
   name: "HomePageWordList",
+
   components: { HomePageWordItem },
+
   props: {
     wordList: {
       type: Array,
       required: true,
     },
   },
+
   methods: {
     deleteWordItem(id) {
       this.$emit("deleteWordItem", id);
@@ -19,6 +22,7 @@ export default defineComponent({
       this.$emit("editWordItem", item);
     },
   },
+
   emits: ["deleteWordItem", "editWordItem"],
 });
 </script>
